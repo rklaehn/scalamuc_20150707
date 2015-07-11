@@ -3,10 +3,12 @@ import pl.project13.scala.sbt.SbtJmh
 lazy val scala210 = project.in(file("scala210"))
   .settings(scalaVersion := "2.10.4")
   .settings(commonSettings:_*)
+  .settings(agentSettings:_*)
 
 lazy val scala211 = project.in(file("scala211"))
   .settings(scalaVersion := "2.11.7")
   .settings(commonSettings:_*)
+  .settings(agentSettings:_*)
 
 lazy val scala212 = project.in(file("scala212"))
   .settings(scalaVersion := "2.12.0-M1")
@@ -31,10 +33,17 @@ lazy val commonSettings = Seq(
   version := "0.1-SNAPSHOT",
   organization := "com.rklaehn",
   libraryDependencies += thyme,
+  initialCommands in console +=
+"""import ichi.bench.Thyme
+  |val th=Thyme.warmed(warmth = Thyme.HowWarm.BenchOff, verbose = println)
+  |""".stripMargin
+)
+
+lazy val agentSettings = Seq(
   libraryDependencies += "com.google.code.java-allocation-instrumenter" % "java-allocation-instrumenter" % "3.0",
   libraryDependencies += "com.github.jbellis" % "jamm" % "0.3.0",
-  javaOptions in Test <++= (dependencyClasspath in Test).map(makeAgentOptions),
-  fork in Test := true
+  javaOptions <++= (dependencyClasspath in Test).map(makeAgentOptions),
+  fork := true
 )
 
 lazy val benchmarkJmhSettings = commonSettings ++ SbtJmh.jmhSettings ++ Seq(

@@ -1,3 +1,5 @@
+import com.google.monitoring.runtime.instrumentation.{Sampler, AllocationRecorder}
+
 import scala.collection.immutable.SortedMap
 
 object ObjectCounter {

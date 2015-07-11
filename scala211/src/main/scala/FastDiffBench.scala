@@ -1,4 +1,5 @@
 import scala.collection.immutable.HashSet
+import ichi.bench.Thyme
 
 object FastDiffBench extends App {
   val th = ichi.bench.Thyme.warmed(warmth = Thyme.HowWarm.BenchOff, verbose = println)

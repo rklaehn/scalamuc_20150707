@@ -1,4 +1,5 @@
 import scala.collection.mutable.{HashMap, LongMap}
+import ichi.bench.Thyme
 
 object MapVsLongMapBench extends App {
 

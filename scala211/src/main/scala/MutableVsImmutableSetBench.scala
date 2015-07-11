@@ -1,4 +1,4 @@
-
+import ichi.bench.Thyme
 
 object MutableVsImmutableSetBench extends App {
 

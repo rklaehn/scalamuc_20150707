@@ -1,5 +1,8 @@
-# scalamuc_20150707
+# ScalaMuc 2015-07-07
+
 Example code for the munich scala user group meetup from 2015-07-07
+
+http://www.meetup.com/ScalaMuc/events/223353943/
 
 ## Slides
 
